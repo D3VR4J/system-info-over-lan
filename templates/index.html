@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Information</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .host {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .host-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Network Information</h1>
+        <p>TOTAL TIME: {{ total_time }} seconds</p>
+        <br>
+        <hr>
+        <p>TOTAL RECORDS: {{ counter }}</p>
+        {% for host in hosts %}
+        <h1>{{ loop.index }}</h1>
+        <div class="host">
+            <div class="host-info">
+                <div class="label">IP:</div>
+                <div>{{ host.ip }}</div>
+            </div>
+            <div class="host-info">
+                <div class="label">Mac Address</div>
+                <div>{{ host.mac_address }}</div>
+            </div>
+            <div class="host-info">
+                <div class="label">System Name:</div>
+                <div>{{ host.system_name }}</div>
+            </div>
+            <div class="host-info">
+                <div class="label">Vendor:</div>
+                <div>{{ host.vendor }}</div>
+            </div>
+            <div class="host-info">
+                <div class="label">Open Ports:</div>
+                <div>{{ host.open_ports }}</div>
+            </div>
+            <div class="host-info">
+                <div class="label">System Info:</div>
+                <div>
+                    {% for key, value in host.system_info.items() %}
+                    <div>{{ key }}: {{ value }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
